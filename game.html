@@ -1,104 +1,1002 @@
+
 <!DOCTYPE html>
 <html lang="th">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>เลือกวรรณคดีที่คุณชอบ</title>
+<meta name="theme-color" content="#4b111b">
+<title>วรรณคดีไทย — เรื่องโปรดของคุณ</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Noto+Serif+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
-:root{--red:#651b22;--red2:#8f2932;--gold:#e6c77a;--cream:#fff8e9;--ink:#34231e}
-*{box-sizing:border-box}body{margin:0;min-height:100vh;color:var(--cream);font-family:Kanit,sans-serif;background:radial-gradient(ellipse at 50% 0%,#a13c3c 0,#651b22 48%,#2b1017 100%);padding:22px}
-main{width:min(1050px,100%);margin:auto}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:22px}.brand{font-family:"Noto Serif Thai",serif;color:var(--gold);font-weight:600}.home{background:transparent;border:1px solid #e6c77a99;color:var(--cream);padding:8px 16px;font-size:14px;box-shadow:none}
-.heading{text-align:center;margin:18px 0 20px}.heading h1{font-family:"Noto Serif Thai",serif;font-size:clamp(25px,5vw,38px);margin:0 0 6px}.heading p{color:#f1ddc4;margin:0}
-.progress{height:7px;background:#ffffff22;border-radius:9px;overflow:hidden;margin:22px 0 28px}.bar{height:100%;width:0;background:linear-gradient(90deg,#c99b4b,#f4d98e);transition:width .3s}
-.round{text-align:center;color:#f5dca2;margin-bottom:18px;font-size:14px}
-.choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
-.choice{border:1px solid #e6c77a77;background:linear-gradient(145deg,#fff8e915,#1c080d55);border-radius:18px;padding:14px;color:var(--cream);cursor:pointer;text-align:left;transition:.2s;box-shadow:0 12px 35px #17060a55}
-.choice:hover{transform:translateY(-5px);border-color:var(--gold);box-shadow:0 16px 38px #12040888}
-.cover{width:100%;aspect-ratio:3/4;max-height:440px;border-radius:11px;overflow:hidden;background:linear-gradient(145deg,#d8b66e,#74323a 55%,#30151b);display:flex;align-items:center;justify-content:center;position:relative}
-.cover img{width:100%;height:100%;object-fit:cover;display:block;position:relative;z-index:2}
-.cover .fallback{position:absolute;inset:0;z-index:1;display:grid;place-items:center;text-align:center;padding:18px;background:radial-gradient(circle at 50% 35%,#e7c77e,#8c3b3b 62%,#3b1720);color:#fff4d8}
-.fallback strong{font-family:"Noto Serif Thai",serif;font-size:clamp(20px,3vw,30px);text-shadow:0 2px 8px #321018}
-.name{font-size:19px;font-weight:600;margin:13px 3px 2px}.hint{font-size:12px;color:#d9bda9;margin:0 3px 4px}
-.result{display:none;text-align:center;border:1px solid #e6c77a77;border-radius:20px;padding:25px;background:#ffffff0b}.result h2{font-family:"Noto Serif Thai",serif;color:var(--gold);font-size:30px}.winner-cover{width:min(260px,80%);margin:18px auto}.winner-cover .cover{max-height:340px}.desc{max-width:700px;margin:18px auto;line-height:1.9;color:#f3dfc9}.actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:22px}.secondary{background:transparent;border:1px solid #e6c77a99;color:var(--cream);box-shadow:none}
-@media(max-width:620px){body{padding:14px}.choices{gap:12px}.choice{padding:9px}.name{font-size:16px}.hint{font-size:11px}.cover{aspect-ratio:3/4}.top{align-items:flex-start}.brand{font-size:14px}}
+:root {
+  --red:#651b25;
+  --red-dark:#300d16;
+  --red-light:#8e3038;
+  --gold:#d9b76b;
+  --gold-light:#f4dfaa;
+  --cream:#fff8e9;
+  --paper:#f4e8d0;
+  --ink:#38221e;
+  --muted:#d7c4ad;
+}
+
+* {
+  box-sizing:border-box;
+}
+
+body {
+  margin:0;
+  min-height:100vh;
+  color:var(--cream);
+  font-family:'Kanit',sans-serif;
+  background:
+    radial-gradient(ellipse at 50% 0%,#9b3a3e 0%,transparent 45%),
+    radial-gradient(ellipse at 0% 80%,#66202b 0%,transparent 35%),
+    linear-gradient(145deg,#42121d,#260b13 75%);
+  overflow-x:hidden;
+}
+
+body::before {
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.13;
+  background-image:
+    radial-gradient(circle,#e8c982 1px,transparent 1.5px);
+  background-size:28px 28px;
+}
+
+body::after {
+  content:"";
+  position:fixed;
+  inset:10px;
+  pointer-events:none;
+  border:1px solid #d9b76b35;
+  z-index:10;
+}
+
+button {
+  font:inherit;
+  cursor:pointer;
+}
+
+main {
+  width:min(1120px,100%);
+  margin:auto;
+  padding:26px 24px 60px;
+  position:relative;
+  z-index:1;
+}
+
+/* HEADER */
+
+.top {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  padding-bottom:17px;
+  border-bottom:1px solid #d9b76b55;
+}
+
+.brand {
+  color:var(--gold-light);
+  font-family:'Noto Serif Thai',serif;
+  font-size:16px;
+  font-weight:600;
+}
+
+.brand span {
+  color:var(--gold);
+  margin-right:8px;
+}
+
+.home {
+  background:transparent;
+  border:1px solid #d9b76b88;
+  border-radius:3px;
+  padding:8px 17px;
+  color:var(--cream);
+  font-size:13px;
+}
+
+/* DECORATION */
+
+.ornament {
+  text-align:center;
+  color:var(--gold);
+  letter-spacing:9px;
+  font-size:17px;
+  margin:17px 0;
+  opacity:.9;
+}
+
+.heading {
+  text-align:center;
+  margin:18px 0 24px;
+}
+
+.eyebrow {
+  color:var(--gold);
+  font-size:11px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+}
+
+.heading h1 {
+  font-family:'Noto Serif Thai',serif;
+  font-size:clamp(27px,5vw,43px);
+  line-height:1.45;
+  margin:8px 0;
+  color:var(--gold-light);
+  text-shadow:0 3px 15px #16070a88;
+}
+
+.heading p {
+  color:var(--muted);
+  font-size:14px;
+  margin:0;
+}
+
+/* GAME INFO */
+
+.game-info {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:25px 0 10px;
+}
+
+.round {
+  color:var(--gold-light);
+  font-family:'Noto Serif Thai',serif;
+  font-size:17px;
+}
+
+.match-number {
+  color:var(--muted);
+  font-size:12px;
+}
+
+.progress {
+  height:5px;
+  background:#ffffff20;
+  margin:12px 0 23px;
+  overflow:hidden;
+}
+
+.bar {
+  height:100%;
+  width:0;
+  background:linear-gradient(90deg,#a87936,#f3d990);
+  transition:width .4s;
+}
+
+/* ROUND STEPS */
+
+.round-steps {
+  display:flex;
+  justify-content:center;
+  gap:9px;
+  margin:20px 0 26px;
+}
+
+.step {
+  width:30px;
+  height:5px;
+  background:#ffffff25;
+  transition:.3s;
+}
+
+.step.active {
+  background:var(--gold);
+  box-shadow:0 0 10px #e6c77a88;
+}
+
+/* CHOICE CARDS */
+
+.choices {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:25px;
+  align-items:start;
+}
+
+.choice-card {
+  position:relative;
+  background:linear-gradient(145deg,#fff9ed12,#1c070c66);
+  border:1px solid #d9b76b77;
+  padding:13px;
+  box-shadow:0 15px 40px #16070a66;
+  transition:.25s;
+  min-width:0;
+}
+
+.choice-card::before,
+.choice-card::after {
+  content:"✦";
+  position:absolute;
+  color:var(--gold);
+  font-size:17px;
+  z-index:3;
+}
+
+.choice-card::before {
+  top:5px;
+  left:7px;
+}
+
+.choice-card::after {
+  bottom:5px;
+  right:7px;
+}
+
+.choice-card:hover {
+  transform:translateY(-4px);
+  border-color:var(--gold-light);
+  box-shadow:0 20px 45px #10030899;
+}
+
+.cover-frame {
+  padding:5px;
+  border:1px solid #d9b76b99;
+  background:#d9b76b18;
+}
+
+.cover {
+  width:100%;
+  aspect-ratio:3/4;
+  max-height:390px;
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 35%,#d8b66e,#8c3b3b 60%,#34121a);
+  display:grid;
+  place-items:center;
+}
+
+.cover img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  position:absolute;
+  inset:0;
+  z-index:2;
+}
+
+.fallback {
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  padding:20px;
+  color:#fff2d2;
+  background:
+    repeating-linear-gradient(45deg,transparent 0 16px,#ffffff0b 17px 18px),
+    radial-gradient(circle,#b67b43,#71303a 65%,#32131a);
+}
+
+.fallback strong {
+  font-family:'Noto Serif Thai',serif;
+  font-size:clamp(20px,3vw,30px);
+  text-shadow:0 3px 12px #321018;
+}
+
+.cover-label {
+  position:absolute;
+  z-index:4;
+  bottom:10px;
+  left:10px;
+  right:10px;
+  text-align:center;
+  padding:7px;
+  color:#fff3d7;
+  font-family:'Noto Serif Thai',serif;
+  font-size:12px;
+  background:#3b1119d9;
+  border:1px solid #d9b76b99;
+}
+
+.card-content {
+  padding:13px 5px 7px;
+}
+
+.story-number {
+  color:var(--gold);
+  font-size:10px;
+  letter-spacing:2px;
+}
+
+.story-name {
+  font-family:'Noto Serif Thai',serif;
+  font-size:20px;
+  line-height:1.5;
+  margin:4px 0 7px;
+  color:var(--gold-light);
+}
+
+.story-short {
+  color:#dfcdb8;
+  font-size:12px;
+  line-height:1.8;
+  min-height:65px;
+}
+
+.card-buttons {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:13px;
+}
+
+.read-btn,
+.choose-btn {
+  padding:10px 5px;
+  font-size:12px;
+  border-radius:2px;
+  transition:.2s;
+}
+
+.read-btn {
+  color:var(--gold-light);
+  background:transparent;
+  border:1px solid #d9b76b88;
+}
+
+.choose-btn {
+  color:#35151a;
+  font-weight:600;
+  background:linear-gradient(120deg,#e8cb85,#bd914b);
+  border:1px solid #f2dba0;
+}
+
+.read-btn:hover {
+  background:#ffffff12;
+}
+
+.choose-btn:hover {
+  filter:brightness(1.1);
+  transform:translateY(-2px);
+}
+
+/* VS */
+
+.vs {
+  text-align:center;
+  color:var(--gold);
+  font-family:'Noto Serif Thai',serif;
+  font-size:16px;
+  letter-spacing:3px;
+  margin:16px 0;
+}
+
+/* MODAL */
+
+.modal {
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:50;
+  background:#16070de8;
+  padding:20px;
+  overflow-y:auto;
+  align-items:center;
+  justify-content:center;
+}
+
+.modal.show {
+  display:flex;
+}
+
+.modal-box {
+  width:min(650px,100%);
+  max-height:90vh;
+  overflow-y:auto;
+  background:
+    linear-gradient(145deg,#fff8e9,#ead8b8);
+  color:var(--ink);
+  padding:25px;
+  border:5px double #ae853e;
+  box-shadow:0 25px 90px #0009;
+  position:relative;
+}
+
+.modal-top {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid #b99555;
+  padding-bottom:12px;
+  gap:10px;
+}
+
+.modal-kicker {
+  color:#98713a;
+  font-size:11px;
+  letter-spacing:3px;
+}
+
+.close {
+  background:#651b25;
+  color:white;
+  border:0;
+  width:32px;
+  height:32px;
+  font-size:19px;
+}
+
+.modal-title {
+  font-family:'Noto Serif Thai',serif;
+  color:#701f2a;
+  font-size:26px;
+  margin:18px 0 12px;
+}
+
+.modal-image {
+  width:min(190px,65%);
+  margin:15px auto;
+}
+
+.modal-image .cover {
+  max-height:250px;
+}
+
+.modal-text {
+  font-size:14px;
+  line-height:2;
+  color:#49352c;
+  white-space:pre-line;
+}
+
+.modal-note {
+  border-left:3px solid #b48a45;
+  padding:10px 14px;
+  background:#a67b3612;
+  color:#765b3d;
+  font-size:12px;
+  line-height:1.8;
+  margin-top:18px;
+}
+
+/* WINNER */
+
+.result {
+  display:none;
+  text-align:center;
+  border:1px solid #d9b76b99;
+  padding:30px 20px;
+  background:linear-gradient(145deg,#fff8e910,#1c070c77);
+  position:relative;
+}
+
+.winner-kicker {
+  color:var(--gold);
+  letter-spacing:4px;
+  font-size:11px;
+}
+
+.result h2 {
+  font-family:'Noto Serif Thai',serif;
+  font-size:27px;
+  color:var(--gold-light);
+  margin:12px 0;
+}
+
+.winner-cover {
+  width:min(270px,80%);
+  margin:20px auto;
+  padding:6px;
+  border:1px solid var(--gold);
+}
+
+.winner-cover .cover {
+  max-height:340px;
+}
+
+#winnerName {
+  font-family:'Noto Serif Thai',serif;
+  font-size:clamp(25px,5vw,38px);
+  color:var(--gold-light);
+  margin:15px 0;
+}
+
+.winner-desc {
+  width:min(720px,100%);
+  margin:15px auto;
+  color:#ead9c4;
+  font-size:14px;
+  line-height:2;
+  text-align:left;
+  white-space:pre-line;
+}
+
+.winner-detail {
+  text-align:left;
+  width:min(720px,100%);
+  margin:20px auto;
+  border-top:1px solid #d9b76b55;
+  padding-top:18px;
+}
+
+.winner-detail h3 {
+  color:var(--gold);
+  font-family:'Noto Serif Thai',serif;
+  font-size:17px;
+}
+
+.actions {
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:25px;
+}
+
+.actions button {
+  padding:11px 22px;
+}
+
+.primary {
+  background:linear-gradient(120deg,#e8cb85,#bd914b);
+  border:1px solid #f2dba0;
+  color:#35151a;
+  font-weight:600;
+}
+
+.secondary {
+  background:transparent;
+  border:1px solid #d9b76b99;
+  color:var(--cream);
+}
+
+/* FOOTER */
+
+.footer {
+  text-align:center;
+  color:#b99d7e;
+  font-size:11px;
+  letter-spacing:2px;
+  margin-top:35px;
+  padding-top:18px;
+  border-top:1px solid #d9b76b44;
+}
+
+/* MOBILE */
+
+@media(max-width:650px) {
+  body {padding:0}
+  body::after {inset:5px}
+  main {padding:18px 14px 45px}
+  .brand {font-size:13px}
+  .home {padding:7px 10px;font-size:11px}
+  .heading {margin:15px 0}
+  .heading p {font-size:12px}
+  .choices {gap:12px}
+  .choice-card {padding:8px}
+  .story-name {font-size:16px}
+  .story-short {font-size:11px;min-height:90px}
+  .card-buttons {grid-template-columns:1fr}
+  .read-btn,.choose-btn {padding:9px 3px;font-size:11px}
+  .cover {aspect-ratio:3/4}
+  .card-content {padding:10px 3px 5px}
+  .round {font-size:14px}
+  .modal-box {padding:17px}
+}
+
+@media(max-width:370px) {
+  .choices {grid-template-columns:1fr}
+  .cover {max-height:420px}
+  .story-short {min-height:0}
+  .card-buttons {grid-template-columns:1fr 1fr}
+}
 </style>
 </head>
+
 <body>
 <main>
-  <header class="top">
-    <div class="brand">✦ วรรณคดีไทยเรื่องโปรดของคุณ</div>
-    <button class="home" onclick="location.href='index.html'">กลับหน้าแรก</button>
-  </header>
-  <section id="game">
-    <div class="heading"><h1>เรื่องไหนโดนใจคุณ?</h1><p>เลือกเรื่องที่ชอบมากกว่าในแต่ละคู่</p></div>
-    <div class="progress"><div class="bar" id="bar"></div></div>
-    <div class="round" id="round">รอบที่ 1 • เลือก 1 จาก 2 เรื่อง</div>
-    <div class="choices" id="choices"></div>
-  </section>
-  <section class="result" id="result">
-    <div class="kicker">YOUR FAVORITE THAI TALE</div>
-    <h2>เรื่องที่ชนะใจคุณคือ</h2>
-    <div class="winner-cover" id="winnerCover"></div>
-    <h1 id="winnerName"></h1>
-    <p class="desc" id="winnerDesc"></p>
-    <div class="actions">
-      <button onclick="restart()">เล่นอีกครั้ง</button>
-      <button class="secondary" onclick="location.href='index.html'">กลับหน้าแรก</button>
-    </div>
-  </section>
+
+<header class="top">
+  <div class="brand"><span>✦</span> วรรณคดีไทยเรื่องโปรดของคุณ</div>
+  <button class="home" onclick="location.href='index.html'">กลับหน้าแรก</button>
+</header>
+
+<div class="ornament">❧ ✦ ❧</div>
+
+<section class="heading">
+  <div class="eyebrow">Thai Literature Tournament</div>
+  <h1>ศึกชิงวรรณคดีเรื่องโปรด</h1>
+  <p>หนึ่งเรื่องราวจะครองใจคุณ เลือกเรื่องที่ชอบมากกว่าในแต่ละคู่</p>
+</section>
+
+<section id="game">
+
+  <div class="game-info">
+    <div class="round" id="round">รอบที่ 1 — รอบ 16 เรื่อง</div>
+    <div class="match-number" id="matchNumber">คู่ที่ 1 จาก 8 คู่</div>
+  </div>
+
+  <div class="progress">
+    <div class="bar" id="bar"></div>
+  </div>
+
+  <div class="round-steps">
+    <div class="step active"></div>
+    <div class="step"></div>
+    <div class="step"></div>
+    <div class="step"></div>
+  </div>
+
+  <div class="vs">✦ เลือกเรื่องที่คุณชื่นชอบ ✦</div>
+
+  <div class="choices" id="choices"></div>
+
+</section>
+
+<section class="result" id="result">
+  <div class="winner-kicker">YOUR FAVORITE THAI LITERATURE</div>
+  <div class="ornament">❧ ✦ ❧</div>
+  <h2>วรรณคดีที่ครองใจคุณคือ</h2>
+
+  <div class="winner-cover" id="winnerCover"></div>
+
+  <h1 id="winnerName"></h1>
+  <div class="winner-desc" id="winnerDesc"></div>
+
+  <div class="winner-detail">
+    <h3>เรื่องราวโดยสังเขป</h3>
+    <div class="winner-desc" id="winnerDetail"></div>
+  </div>
+
+  <div class="actions">
+    <button class="primary" onclick="restart()">✦ แข่งขันอีกครั้ง</button>
+    <button class="secondary" onclick="location.href='index.html'">กลับหน้าแรก</button>
+  </div>
+</section>
+
+<div class="footer">
+  THAI LITERATURE · STORIES THAT LIVE FOREVER
+</div>
+
 </main>
+
+<!-- STORY MODAL -->
+
+<div class="modal" id="storyModal" onclick="outsideClose(event)">
+  <div class="modal-box">
+    <div class="modal-top">
+      <div class="modal-kicker">THE STORY BEHIND THE TALE</div>
+      <button class="close" onclick="closeModal()">×</button>
+    </div>
+
+    <h2 class="modal-title" id="modalTitle"></h2>
+    <div class="modal-image" id="modalImage"></div>
+    <div class="modal-text" id="modalText"></div>
+    <div class="modal-note">
+      เรื่องย่อเรียบเรียงเพื่อประกอบกิจกรรมควิซวรรณคดีไทย
+      รายละเอียดบางส่วนอาจแตกต่างกันตามสำนวนและฉบับดัดแปลง
+    </div>
+  </div>
+</div>
+
 <script>
 const stories = [
- {name:"รามเกียรติ์",file:"01-ramakien.jpg",desc:"มหากาพย์การต่อสู้ระหว่างพระรามและทศกัณฐ์ เต็มไปด้วยวีรกรรม ความกล้าหาญ ความซื่อสัตย์ และตัวละครที่มีเอกลักษณ์"},
- {name:"โสนน้อยเรือนงาม",file:"02-sonnoi.jpg",desc:"เรื่องราวของเจ้าหญิงผู้มีเรือนวิเศษ ต้องเผชิญชะตากรรมและอุปสรรค ก่อนใช้ความดี ความอดทน และความเมตตาฝ่าฟันไป"},
- {name:"มัทนะพาธา",file:"03-mathanaphatha.jpg",desc:"บทละครคำฉันท์ที่เล่าถึงความรักและความเจ็บปวด ผ่านเรื่องราวของมัทนาและสุเทษณ์ พร้อมแนวคิดเกี่ยวกับธรรมชาติของความรัก"},
- {name:"ไกรทอง",file:"04-kraithong.jpg",desc:"เรื่องของไกรทองผู้กล้าหาญที่ออกปราบชาละวัน พญาจระเข้แห่งเมืองพิจิตร"},
- {name:"สังข์ทอง",file:"05-sangthong.jpg",desc:"เจ้าชายผู้ถือกำเนิดในหอยสังข์และต้องปลอมตัวเป็นเจ้าเงาะ ก่อนพิสูจน์คุณค่าที่แท้จริงของตน"},
- {name:"อุทัยเทวี",file:"06-uthaithawi.jpg",desc:"นิทานพื้นบ้านไทยที่เล่าถึงอุทัยเทวี การพลัดพราก การผจญภัย และการฝ่าฟันอุปสรรค"},
- {name:"แก้วหน้าม้า",file:"07-kaewnamma.jpg",desc:"เรื่องราวของหญิงผู้มีรูปลักษณ์แตกต่าง แต่มีความสามารถ ความกล้าหาญ และความรักที่มั่นคง"},
- {name:"พระอภัยมณี",file:"08-phra-aphai-manee.jpg",desc:"วรรณคดีเอกของสุนทรภู่ ว่าด้วยการเดินทางผจญภัยของพระอภัยมณี ผู้มีปี่เป็นอาวุธสำคัญ"},
- {name:"ขุนช้างขุนแผน",file:"09-khun-chang-khun-phaen.jpg",desc:"เสภาที่สะท้อนชีวิต ความรัก ความสัมพันธ์ และสังคมไทยในอดีต ผ่านตัวละครขุนแผน ขุนช้าง และวันทอง"},
- {name:"อิเหนา",file:"10-ihena.jpg",desc:"บทละครรำที่เต็มไปด้วยความรัก การพลัดพราก การเมือง และการผจญภัยของอิเหนา"},
- {name:"พระสุธน-มโนราห์",file:"11-phra-suthon-manora.jpg",desc:"ตำนานความรักระหว่างพระสุธนกับนางมโนราห์ ผู้ต้องพลัดพรากและเดินทางฝ่าอุปสรรคเพื่อกลับมาพบกัน"},
- {name:"ลิลิตพระลอ",file:"12-lilit-phra-lo.jpg",desc:"วรรณคดีโศกนาฏกรรมความรักอันโดดเด่นด้านภาษาและการพรรณนา เล่าเรื่องพระลอกับพระเพื่อนพระแพง"},
- {name:"ราชาธิราช",file:"13-rachathirat.jpg",desc:"วรรณคดีเชิงประวัติศาสตร์ที่กล่าวถึงพระราชประวัติและการศึกของพระเจ้าราชาธิราช"},
- {name:"พระรถเมรี",file:"14-phra-rot-meree.jpg",desc:"เรื่องราวการผจญภัยและความรักอันซับซ้อนของพระรถเสนและนางเมรี"},
- {name:"สามก๊ก",file:"15-sam-kok.jpg",desc:"วรรณกรรมจีนอิงประวัติศาสตร์ที่โดดเด่นด้วยกลยุทธ์ การเมือง มิตรภาพ และการชิงอำนาจในยุคสามก๊ก"},
- {name:"ไตรภูมิพระร่วง",file:"16-traiphum-phra-ruang.jpg",desc:"วรรณคดีพุทธศาสนาที่อธิบายจักรวาลตามคติไตรภูมิ ทั้งโลกมนุษย์ สวรรค์ และนรก"}
+{
+ name:"รามเกียรติ์",
+ file:"01-ramakien.jpg",
+ short:"มหากาพย์การต่อสู้ของพระรามกับทศกัณฐ์ เต็มไปด้วยวีรกรรมและความจงรักภักดี",
+ summary:"รามเกียรติ์เป็นวรรณคดีเรื่องสำคัญของไทย มีเค้าเรื่องจากรามายณะของอินเดีย เล่าถึงพระราม ผู้เป็นอวตารของพระนารายณ์ ซึ่งต้องออกเดินทางและต่อสู้กับทศกัณฐ์ เจ้าแห่งกรุงลงกา หลังจากนางสีดาถูกลักพาตัว",
+ detail:"พระรามได้รับความช่วยเหลือจากพระลักษมณ์ หนุมาน สุครีพ และกองทัพวานร ในการเดินทางไปยังกรุงลงกา เกิดเป็นสงครามครั้งใหญ่ระหว่างฝ่ายพระรามและฝ่ายทศกัณฐ์ เรื่องราวเต็มไปด้วยการต่อสู้ กลศึก ความจงรักภักดี ความกล้าหาญ และการทำหน้าที่ตามหลักธรรม"
+},
+{
+ name:"โสนน้อยเรือนงาม",
+ file:"02-sonnoi.jpg",
+ short:"นิทานพื้นบ้านเกี่ยวกับหญิงสาวผู้มีเรือนวิเศษ ต้องเผชิญชะตากรรมและการพลัดพราก",
+ summary:"โสนน้อยเรือนงามเป็นนิทานพื้นบ้านไทย เล่าเรื่องหญิงสาวผู้มีความงดงามและเกี่ยวข้องกับเรือนวิเศษ ชีวิตของนางต้องพบกับการพลัดพราก ความอิจฉาริษยา และเหตุการณ์ที่ทำให้ต้องเผชิญความยากลำบาก",
+ detail:"เรื่องราวกล่าวถึงการเปลี่ยนแปลงของชีวิตและชะตากรรมของตัวละคร นางเอกต้องใช้ความอดทนและความดีในการผ่านอุปสรรคต่าง ๆ เนื้อเรื่องสะท้อนแนวคิดเรื่องความกตัญญู ความเมตตา และการมองคุณค่าของคนจากการกระทำมากกว่ารูปลักษณ์ภายนอก"
+},
+{
+ name:"มัทนะพาธา",
+ file:"03-mathanaphatha.jpg",
+ short:"บทละครคำฉันท์ว่าด้วยความรักของมัทนาและสุเทษณ์ พร้อมแนวคิดเรื่องความรักและความเจ็บปวด",
+ summary:"มัทนะพาธาเป็นบทละครพูดคำฉันท์พระราชนิพนธ์ในพระบาทสมเด็จพระมงกุฎเกล้าเจ้าอยู่หัว เรื่องราวเกี่ยวข้องกับเทพบุตรสุเทษณ์ผู้หลงรักมัทนา แต่นางไม่ได้มีใจตอบรัก",
+ detail:"สุเทษณ์ไม่อาจสมหวังในความรัก จึงเกิดความขัดแย้งและคำสาปที่ทำให้มัทนาต้องลงมาเกิดเป็นมนุษย์ในโลกมนุษย์ เรื่องดำเนินไปท่ามกลางความรักที่ไม่สมหวัง ความปรารถนา และผลของการบังคับใจผู้อื่น โดยมีดอกกุหลาบเป็นสัญลักษณ์สำคัญของเรื่อง"
+},
+{
+ name:"ไกรทอง",
+ file:"04-kraithong.jpg",
+ short:"เรื่องของไกรทองผู้กล้าหาญที่ออกปราบชาละวัน พญาจระเข้แห่งเมืองพิจิตร",
+ summary:"ไกรทองเป็นวรรณคดีและนิทานพื้นบ้านไทยที่มีชื่อเสียง เล่าเรื่องชาละวัน พญาจระเข้ผู้มีอิทธิฤทธิ์ ซึ่งอาศัยอยู่ในถ้ำใต้น้ำและสร้างความหวาดกลัวให้แก่ผู้คน",
+ detail:"เมื่อชาละวันสร้างความเดือดร้อนให้ชาวเมือง ไกรทองผู้มีความสามารถด้านการปราบจระเข้จึงอาสาออกต่อสู้ เกิดเป็นการผจญภัยระหว่างมนุษย์กับพญาจระเข้ เรื่องราวมีทั้งความกล้าหาญ ไสยเวท การต่อสู้ และความเชื่อพื้นบ้าน"
+},
+{
+ name:"สังข์ทอง",
+ file:"05-sangthong.jpg",
+ short:"เจ้าชายผู้ถือกำเนิดในหอยสังข์ ต้องปลอมตัวเป็นเจ้าเงาะก่อนพิสูจน์คุณค่าที่แท้จริง",
+ summary:"สังข์ทองเป็นวรรณคดีไทยที่เล่าถึงพระสังข์ ผู้ถือกำเนิดจากหอยสังข์และมีชาติกำเนิดพิเศษ แต่กลับถูกมองด้วยความรังเกียจและต้องเผชิญชะตากรรมตั้งแต่วัยเยาว์",
+ detail:"พระสังข์เดินทางผ่านเหตุการณ์ต่าง ๆ และปลอมตัวเป็นเจ้าเงาะเพื่อปิดบังตัวตน ต่อมาได้พบกับนางรจนา ธิดาของท้าวสามนต์ ซึ่งเลือกเจ้าเงาะเป็นคู่ครอง แม้จะถูกดูหมิ่นจากผู้คน พระสังข์ได้พิสูจน์ความสามารถและตัวตนที่แท้จริง เรื่องสะท้อนคุณค่าภายใน ความอดทน และการไม่ตัดสินคนจากรูปลักษณ์"
+},
+{
+ name:"อุทัยเทวี",
+ file:"06-uthaithawi.jpg",
+ short:"นิทานพื้นบ้านไทยเกี่ยวกับอุทัยเทวี การพลัดพราก และการฝ่าฟันอุปสรรค",
+ summary:"อุทัยเทวีเป็นนิทานพื้นบ้านไทยที่เล่าเรื่องหญิงสาวผู้มีชาติกำเนิดและชะตาชีวิตเกี่ยวข้องกับโลกมนุษย์และโลกเหนือธรรมชาติ",
+ detail:"เรื่องราวกล่าวถึงการกำเนิด การพลัดพราก และการเดินทางผ่านเหตุการณ์ต่าง ๆ ของตัวละคร อุทัยเทวีต้องเผชิญอุปสรรคและความเปลี่ยนแปลงของชีวิต เนื้อเรื่องสะท้อนความเชื่อพื้นบ้าน เรื่องบุญกรรม ความรัก และความอดทน ทั้งนี้รายละเอียดอาจแตกต่างกันในแต่ละสำนวน"
+},
+{
+ name:"แก้วหน้าม้า",
+ file:"07-kaewnamma.jpg",
+ short:"หญิงสาวผู้มีรูปลักษณ์แตกต่าง แต่มีความสามารถ ความกล้าหาญ และความรักที่มั่นคง",
+ summary:"แก้วหน้าม้าเป็นนิทานพื้นบ้านไทยที่รู้จักกันแพร่หลาย เล่าเรื่องหญิงสาวผู้มีใบหน้าคล้ายม้า แต่มีความสามารถและความกล้าหาญเกินกว่าที่ผู้คนจะคาดคิด",
+ detail:"นางแก้วมีความรักและความผูกพันกับพระปิ่นทอง แม้ต้องเผชิญการดูถูกและบททดสอบมากมาย นางใช้ความสามารถ ความฉลาด และความมุ่งมั่นในการพิสูจน์ตนเอง เรื่องราวสะท้อนการมองคุณค่าของคนจากจิตใจและการกระทำ ไม่ใช่เพียงรูปลักษณ์ภายนอก"
+},
+{
+ name:"พระอภัยมณี",
+ file:"08-phra-aphai-manee.jpg",
+ short:"วรรณคดีเอกของสุนทรภู่ ว่าด้วยการเดินทางผจญภัยของพระอภัยมณี ผู้มีปี่เป็นอาวุธสำคัญ",
+ summary:"พระอภัยมณีเป็นวรรณคดีคำกลอนเรื่องยาวของสุนทรภู่ เล่าถึงพระอภัยมณีและศรีสุวรรณ สองพี่น้องที่ออกเดินทางจากเมืองหลังจากได้รับการศึกษาแตกต่างกัน พระอภัยมณีเชี่ยวชาญการเป่าปี่ ส่วนศรีสุวรรณเชี่ยวชาญวิชาการต่อสู้",
+ detail:"พระอภัยมณีพบกับนางผีเสื้อสมุทรและมีโอรสชื่อสินสมุทร ก่อนจะหลบหนีออกจากถ้ำและพบกับนางเงือก จากนั้นเรื่องราวขยายไปสู่การผจญภัยในทะเล การพบผู้คนและเมืองต่าง ๆ ความรัก การศึก และการเดินทางที่เต็มไปด้วยเหตุการณ์เหนือจินตนาการ"
+},
+{
+ name:"ขุนช้างขุนแผน",
+ file:"09-khun-chang-khun-phaen.jpg",
+ short:"เสภาที่สะท้อนชีวิต ความรัก และสังคมไทยในอดีต ผ่านเรื่องราวของขุนช้าง ขุนแผน และวันทอง",
+ summary:"ขุนช้างขุนแผนเป็นวรรณคดีเสภาเรื่องสำคัญของไทย มีฉากหลังในสังคมไทยสมัยอยุธยา เล่าเรื่องความสัมพันธ์ของตัวละครสามคน ได้แก่ ขุนแผน ขุนช้าง และนางวันทอง",
+ detail:"เรื่องเริ่มจากความสัมพันธ์ในวัยเยาว์ของตัวละคร ก่อนพัฒนาเป็นความรัก ความขัดแย้ง การแย่งชิง และปัญหาครอบครัว ขุนแผนมีความสามารถด้านวิชาอาคมและการรบ ส่วนขุนช้างมีฐานะและทรัพย์สิน เรื่องสะท้อนชีวิตผู้คน ค่านิยม ความเชื่อ และระบบสังคมในอดีต"
+},
+{
+ name:"อิเหนา",
+ file:"10-ihena.jpg",
+ short:"บทละครรำที่เต็มไปด้วยความรัก การพลัดพราก การเมือง และการผจญภัยของอิเหนา",
+ summary:"อิเหนาเป็นวรรณคดีที่มีต้นเค้ามาจากนิทานปันหยีของชวา เล่าเรื่องเจ้าชายอิเหนาแห่งเมืองกุเรปัน ผู้มีความรักและความสัมพันธ์กับบุษบา ธิดาเมืองดาหา",
+ detail:"อิเหนาต้องเผชิญความขัดแย้งระหว่างความรัก ความปรารถนาส่วนตัว และหน้าที่ทางการเมือง เรื่องดำเนินผ่านการเดินทาง การปลอมตัว การทำสงคราม และการพลัดพราก ตัวละครมีความซับซ้อนและสะท้อนความสัมพันธ์ระหว่างบ้านเมืองกับความรัก"
+},
+{
+ name:"พระสุธน-มโนราห์",
+ file:"11-phra-suthon-manora.jpg",
+ short:"ตำนานความรักระหว่างพระสุธนกับนางมโนราห์ ผู้ต้องพลัดพรากและเดินทางฝ่าอุปสรรค",
+ summary:"พระสุธน-มโนราห์เป็นเรื่องราวความรักที่มีชื่อเสียง เล่าถึงพระสุธน เจ้าชายผู้ได้พบรักกับนางมโนราห์ ซึ่งเป็นกินรีจากป่าหิมพานต์",
+ detail:"ทั้งสองได้ครองรักกัน แต่เกิดเหตุการณ์ที่ทำให้นางมโนราห์ต้องพลัดพรากจากพระสุธน พระสุธนจึงออกเดินทางตามหานาง ผ่านการผจญภัยและอุปสรรคมากมาย เรื่องเน้นความรัก ความซื่อสัตย์ ความเพียรพยายาม และการรอคอย"
+},
+{
+ name:"ลิลิตพระลอ",
+ file:"12-lilit-phra-lo.jpg",
+ short:"โศกนาฏกรรมความรักของพระลอ พระเพื่อน และพระแพง โดดเด่นด้วยภาษาและการพรรณนา",
+ summary:"ลิลิตพระลอเป็นวรรณคดีประเภทลิลิตที่มีชื่อเสียง เล่าเรื่องพระลอ กษัตริย์หนุ่มผู้มีรูปโฉมงดงาม ซึ่งได้ยินกิตติศัพท์ความงามของพระเพื่อนและพระแพง ธิดาของเมืองสรอง",
+ detail:"ด้วยแรงปรารถนาและมนตร์เสน่ห์ พระลอเดินทางไปยังเมืองสรองและได้พบกับพระเพื่อนพระแพง ทั้งสามมีความรักต่อกัน แต่ความขัดแย้งระหว่างสองเมืองกลับนำไปสู่โศกนาฏกรรม เรื่องโดดเด่นด้านการใช้ภาษา การพรรณนาความรัก และการสะท้อนความขัดแย้งของมนุษย์"
+},
+{
+ name:"ราชาธิราช",
+ file:"13-rachathirat.jpg",
+ short:"วรรณคดีเชิงประวัติศาสตร์ที่กล่าวถึงพระราชประวัติ การเมือง และการศึกของพระเจ้าราชาธิราช",
+ summary:"ราชาธิราชเป็นวรรณคดีที่มีเค้าเรื่องจากพงศาวดารมอญ กล่าวถึงพระเจ้าราชาธิราช กษัตริย์ผู้มีบทบาทสำคัญในการสร้างความเข้มแข็งให้แก่บ้านเมือง",
+ detail:"เนื้อเรื่องเต็มไปด้วยเหตุการณ์ทางการเมือง การปกครอง การทำสงคราม และการวางกลยุทธ์ ตัวละครต้องใช้ทั้งสติปัญญา ความกล้าหาญ และความสามารถในการตัดสินใจ เรื่องนี้จึงเป็นตัวอย่างของวรรณคดีที่ให้แง่คิดเกี่ยวกับการเป็นผู้นำและการบริหารบ้านเมือง"
+},
+{
+ name:"พระรถเมรี",
+ file:"14-phra-rot-meree.jpg",
+ short:"เรื่องราวการเดินทางของพระรถเสนและความรักอันซับซ้อนกับนางเมรี",
+ summary:"พระรถเมรีเป็นเรื่องเล่าที่สัมพันธ์กับนิทานพื้นบ้านเรื่องนางสิบสอง เล่าถึงพระรถเสน ผู้ต้องเดินทางไปยังเมืองของนางยักษ์และได้พบกับนางเมรี",
+ detail:"พระรถเสนได้รับภารกิจให้เดินทางไปยังเมืองของนางเมรี ซึ่งเป็นธิดาของนางยักษ์ ทั้งสองเกิดความรักต่อกัน แต่สถานการณ์และความขัดแย้งทำให้ความสัมพันธ์ต้องเผชิญบททดสอบ เรื่องนี้มีทั้งการผจญภัย ความรัก ความผูกพัน และความโศกเศร้า"
+},
+{
+ name:"สามก๊ก",
+ file:"15-sam-kok.jpg",
+ short:"วรรณกรรมจีนอิงประวัติศาสตร์ โดดเด่นด้วยกลยุทธ์ การเมือง มิตรภาพ และการชิงอำนาจ",
+ summary:"สามก๊กเป็นวรรณกรรมจีนอิงประวัติศาสตร์ เล่าเหตุการณ์ในช่วงปลายราชวงศ์ฮั่น เมื่ออำนาจส่วนกลางอ่อนแอลงและเกิดความขัดแย้งระหว่างขุนศึกหลายฝ่าย",
+ detail:"เรื่องราวกล่าวถึงบุคคลสำคัญ เช่น เล่าปี่ โจโฉ และซุนกวน ซึ่งต่างมีเป้าหมายในการรวบรวมแผ่นดิน นอกจากนี้ยังมีตัวละครอย่างกวนอู เตียวหุย และขงเบ้ง ที่แสดงให้เห็นถึงความจงรักภักดี ความสามารถทางการทหาร และกลยุทธ์ทางการเมือง"
+},
+{
+ name:"ไตรภูมิพระร่วง",
+ file:"16-traiphum-phra-ruang.jpg",
+ short:"วรรณคดีพุทธศาสนาที่อธิบายจักรวาลตามคติไตรภูมิ ทั้งโลกมนุษย์ สวรรค์ และนรก",
+ summary:"ไตรภูมิพระร่วง หรือเตภูมิกถา เป็นวรรณคดีพุทธศาสนาที่เชื่อว่าเรียบเรียงขึ้นในสมัยสุโขทัย โดยพระมหาธรรมราชาที่ 1 หรือพญาลิไทย",
+ detail:"เนื้อหาอธิบายจักรวาลตามคติพุทธศาสนา แบ่งออกเป็นกามภูมิ รูปภูมิ และอรูปภูมิ กล่าวถึงโลกมนุษย์ สวรรค์ และนรก รวมทั้งการเวียนว่ายตายเกิดตามผลของกรรม จุดมุ่งหมายสำคัญคือการอธิบายหลักธรรมและชี้ให้เห็นถึงผลของการกระทำ"
+}
 ];
-let pool=[],roundNo=0,matchCount=0;
-function coverHTML(s,extra=""){
- const src="images/"+s.file;
- return `<div class="cover ${extra}"><img src="${src}" alt="ปกหนังสือ ${s.name}" onerror="this.style.display='none'"><div class="fallback"><strong>${s.name}</strong></div></div>`;
+
+/* TOURNAMENT SYSTEM */
+
+let pool = [];
+let winners = [];
+let currentPair = [];
+let pairIndex = 0;
+let roundNo = 1;
+let matchCount = 0;
+
+const roundNames = [
+  "รอบที่ 1 — รอบ 16 เรื่อง",
+  "รอบที่ 2 — รอบ 8 เรื่อง",
+  "รอบที่ 3 — รอบรองชนะเลิศ",
+  "รอบที่ 4 — รอบชิงชนะเลิศ"
+];
+
+const roundMatches = [8,4,2,1];
+
+function coverHTML(story) {
+  const src = "images/" + story.file;
+
+  return `
+    <div class="cover">
+      <img
+        src="${src}"
+        alt="ภาพปก ${story.name}"
+        onerror="this.style.display='none'"
+      >
+      <div class="fallback">
+        <strong>${story.name}</strong>
+      </div>
+      <div class="cover-label">วรรณคดีไทย</div>
+    </div>
+  `;
 }
-function restart(){
- pool=[...stories].sort(()=>Math.random()-.5);roundNo=1;matchCount=0;
- document.getElementById("game").style.display="block";document.getElementById("result").style.display="none";
- showPair();
+
+function restart() {
+  pool = [...stories].sort(() => Math.random() - 0.5);
+  winners = [];
+  currentPair = [];
+  pairIndex = 0;
+  roundNo = 1;
+  matchCount = 0;
+
+  document.getElementById("game").style.display = "block";
+  document.getElementById("result").style.display = "none";
+
+  showPair();
 }
-function showPair(){
- if(pool.length===1){showWinner(pool[0]);return;}
- const a=pool.shift(),b=pool.shift();
- document.getElementById("round").textContent=`คู่ที่ ${matchCount+1} จาก 15 • เลือก 1 จาก 2 เรื่อง`;
- document.getElementById("bar").style.width=(matchCount/15*100)+"%";
- document.getElementById("choices").innerHTML=[a,b].map((s,i)=>`<button class="choice" type="button" onclick="choose(${i})">${coverHTML(s)}<div class="name">${s.name}</div><div class="hint">แตะเพื่อเลือกเรื่องนี้</div></button>`).join("");
- window.currentPair=[a,b];
+
+function showPair() {
+  if (pairIndex >= pool.length) {
+    if (winners.length === 1) {
+      showWinner(winners[0]);
+      return;
+    }
+
+    pool = [...winners];
+    winners = [];
+    pairIndex = 0;
+    roundNo++;
+  }
+
+  if (pool.length === 1) {
+    showWinner(pool[0]);
+    return;
+  }
+
+  const a = pool[pairIndex];
+  const b = pool[pairIndex + 1];
+
+  currentPair = [a,b];
+
+  document.getElementById("round").textContent =
+    roundNames[roundNo - 1];
+
+  document.getElementById("matchNumber").textContent =
+    `คู่ที่ ${pairIndex / 2 + 1} จาก ${roundMatches[roundNo - 1]} คู่`;
+
+  document.getElementById("bar").style.width =
+    (matchCount / 15 * 100) + "%";
+
+  document.querySelectorAll(".step").forEach((step,i) => {
+    step.classList.toggle("active",i === roundNo - 1);
+  });
+
+  document.getElementById("choices").innerHTML =
+    [a,b].map((story,i) => `
+      <article class="choice-card">
+
+        <div class="cover-frame">
+          ${coverHTML(story)}
+        </div>
+
+        <div class="card-content">
+          <div class="story-number">TALE NO. ${stories.indexOf(story)+1}</div>
+
+          <div class="story-name">${story.name}</div>
+
+          <div class="story-short">${story.short}</div>
+
+          <div class="card-buttons">
+            <button
+              class="read-btn"
+              type="button"
+              onclick="openStory(${stories.indexOf(story)})"
+            >อ่านเรื่องย่อ +</button>
+
+            <button
+              class="choose-btn"
+              type="button"
+              onclick="choose(${i})"
+            >เลือกเรื่องนี้ ✦</button>
+          </div>
+        </div>
+
+      </article>
+    `).join("");
 }
-function choose(i){
- const winner=window.currentPair[i];pool.push(winner);matchCount++;
- if(pool.length===1){showWinner(pool[0]);return;}
- showPair();
+
+function choose(index) {
+  const winner = currentPair[index];
+
+  winners.push(winner);
+  pairIndex += 2;
+  matchCount++;
+
+  showPair();
 }
-function showWinner(s){
- document.getElementById("game").style.display="none";document.getElementById("result").style.display="block";
- document.getElementById("winnerCover").innerHTML=coverHTML(s);
- document.getElementById("winnerName").textContent=s.name;
- document.getElementById("winnerDesc").textContent=s.desc;
- document.getElementById("bar").style.width="100%";
- window.scrollTo({top:0,behavior:"smooth"});
+
+/* STORY MODAL */
+
+function openStory(index) {
+  const story = stories[index];
+
+  document.getElementById("modalTitle").textContent =
+    story.name;
+
+  document.getElementById("modalImage").innerHTML =
+    coverHTML(story);
+
+  document.getElementById("modalText").textContent =
+    story.summary + "\n\n" + story.detail;
+
+  document.getElementById("storyModal").classList.add("show");
+  document.body.style.overflow = "hidden";
 }
+
+function closeModal() {
+  document.getElementById("storyModal").classList.remove("show");
+  document.body.style.overflow = "";
+}
+
+function outsideClose(event) {
+  if (event.target.id === "storyModal") {
+    closeModal();
+  }
+}
+
+/* WINNER */
+
+function showWinner(story) {
+  document.getElementById("game").style.display = "none";
+  document.getElementById("result").style.display = "block";
+
+  document.getElementById("winnerCover").innerHTML =
+    coverHTML(story);
+
+  document.getElementById("winnerName").textContent =
+    story.name;
+
+  document.getElementById("winnerDesc").textContent =
+    story.short;
+
+  document.getElementById("winnerDetail").textContent =
+    story.summary + "\n\n" + story.detail;
+
+  document.getElementById("bar").style.width = "100%";
+
+  document.querySelectorAll(".step").forEach(step => {
+    step.classList.add("active");
+  });
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
+/* KEYBOARD */
+
+document.addEventListener("keydown",event => {
+  if (event.key === "Escape") closeModal();
+});
+
 restart();
 </script>
 </body>
