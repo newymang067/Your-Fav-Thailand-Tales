@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>เรื่องในดวงใจ</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  font-family: sans-serif;
+  background: linear-gradient(135deg, #f8e4eb, #eee6f5, #f9eadc);
+  color: #594752;
+}
+
+.container {
+  background: white;
+  max-width: 500px;
+  width: 100%;
+  padding: 40px 25px;
+  border-radius: 25px;
+  text-align: center;
+  box-shadow: 0 10px 35px #00000015;
+}
+
+.heart {
+  font-size: 55px;
+  color: #c17d98;
+}
+
+h1 {
+  color: #a65e78;
+  font-size: 34px;
+}
+
+p {
+  line-height: 1.9;
+  color: #786a73;
+}
+
+button {
+  background: #b87590;
+  color: white;
+  border: none;
+  padding: 15px 35px;
+  border-radius: 30px;
+  font-size: 17px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+footer {
+  margin-top: 35px;
+  font-size: 12px;
+  color: #aaa;
+}
+</style>
+</head>
+
+<body>
+<main class="container">
+
+  <div class="heart">♡</div>
+
+  <h1>เรื่องในดวงใจ</h1>
+
+  <p>
+    บางเรื่องราวอาจไม่มีคำตอบที่ถูกหรือผิด<br>
+    แต่ทุกคำตอบอาจบอกอะไรบางอย่างเกี่ยวกับตัวเรา
+  </p>
+
+  <p>
+    พร้อมหรือยังที่จะค้นพบเรื่องราว<br>
+    ที่ซ่อนอยู่ในหัวใจของคุณ?
+  </p>
+
+  <button onclick="startQuiz()">
+    เริ่มต้นการเดินทาง
+  </button>
+
+  <footer>
+    A little story inside your heart.
+  </footer>
+
+</main>
+
+<script>
+function startQuiz() {
+  alert("ยินดีต้อนรับสู่เรื่องในดวงใจ ♡");
+}
+</script>
+
+</body>
+</html>
