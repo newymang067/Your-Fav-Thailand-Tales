@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>เลือกวรรณคดีที่คุณชอบ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Noto+Serif+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--red:#651b22;--red2:#8f2932;--gold:#e6c77a;--cream:#fff8e9;--ink:#34231e}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;color:var(--cream);font-family:Kanit,sans-serif;background:radial-gradient(ellipse at 50% 0%,#a13c3c 0,#651b22 48%,#2b1017 100%);padding:22px}
+main{width:min(1050px,100%);margin:auto}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:22px}.brand{font-family:"Noto Serif Thai",serif;color:var(--gold);font-weight:600}.home{background:transparent;border:1px solid #e6c77a99;color:var(--cream);padding:8px 16px;font-size:14px;box-shadow:none}
+.heading{text-align:center;margin:18px 0 20px}.heading h1{font-family:"Noto Serif Thai",serif;font-size:clamp(25px,5vw,38px);margin:0 0 6px}.heading p{color:#f1ddc4;margin:0}
+.progress{height:7px;background:#ffffff22;border-radius:9px;overflow:hidden;margin:22px 0 28px}.bar{height:100%;width:0;background:linear-gradient(90deg,#c99b4b,#f4d98e);transition:width .3s}
+.round{text-align:center;color:#f5dca2;margin-bottom:18px;font-size:14px}
+.choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.choice{border:1px solid #e6c77a77;background:linear-gradient(145deg,#fff8e915,#1c080d55);border-radius:18px;padding:14px;color:var(--cream);cursor:pointer;text-align:left;transition:.2s;box-shadow:0 12px 35px #17060a55}
+.choice:hover{transform:translateY(-5px);border-color:var(--gold);box-shadow:0 16px 38px #12040888}
+.cover{width:100%;aspect-ratio:3/4;max-height:440px;border-radius:11px;overflow:hidden;background:linear-gradient(145deg,#d8b66e,#74323a 55%,#30151b);display:flex;align-items:center;justify-content:center;position:relative}
+.cover img{width:100%;height:100%;object-fit:cover;display:block;position:relative;z-index:2}
+.cover .fallback{position:absolute;inset:0;z-index:1;display:grid;place-items:center;text-align:center;padding:18px;background:radial-gradient(circle at 50% 35%,#e7c77e,#8c3b3b 62%,#3b1720);color:#fff4d8}
+.fallback strong{font-family:"Noto Serif Thai",serif;font-size:clamp(20px,3vw,30px);text-shadow:0 2px 8px #321018}
+.name{font-size:19px;font-weight:600;margin:13px 3px 2px}.hint{font-size:12px;color:#d9bda9;margin:0 3px 4px}
+.result{display:none;text-align:center;border:1px solid #e6c77a77;border-radius:20px;padding:25px;background:#ffffff0b}.result h2{font-family:"Noto Serif Thai",serif;color:var(--gold);font-size:30px}.winner-cover{width:min(260px,80%);margin:18px auto}.winner-cover .cover{max-height:340px}.desc{max-width:700px;margin:18px auto;line-height:1.9;color:#f3dfc9}.actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:22px}.secondary{background:transparent;border:1px solid #e6c77a99;color:var(--cream);box-shadow:none}
+@media(max-width:620px){body{padding:14px}.choices{gap:12px}.choice{padding:9px}.name{font-size:16px}.hint{font-size:11px}.cover{aspect-ratio:3/4}.top{align-items:flex-start}.brand{font-size:14px}}
+</style>
+</head>
+<body>
+<main>
+  <header class="top">
+    <div class="brand">✦ วรรณคดีไทยเรื่องโปรดของคุณ</div>
+    <button class="home" onclick="location.href='index.html'">กลับหน้าแรก</button>
+  </header>
+  <section id="game">
+    <div class="heading"><h1>เรื่องไหนโดนใจคุณ?</h1><p>เลือกเรื่องที่ชอบมากกว่าในแต่ละคู่</p></div>
+    <div class="progress"><div class="bar" id="bar"></div></div>
+    <div class="round" id="round">รอบที่ 1 • เลือก 1 จาก 2 เรื่อง</div>
+    <div class="choices" id="choices"></div>
+  </section>
+  <section class="result" id="result">
+    <div class="kicker">YOUR FAVORITE THAI TALE</div>
+    <h2>เรื่องที่ชนะใจคุณคือ</h2>
+    <div class="winner-cover" id="winnerCover"></div>
+    <h1 id="winnerName"></h1>
+    <p class="desc" id="winnerDesc"></p>
+    <div class="actions">
+      <button onclick="restart()">เล่นอีกครั้ง</button>
+      <button class="secondary" onclick="location.href='index.html'">กลับหน้าแรก</button>
+    </div>
+  </section>
+</main>
+<script>
+const stories = [
+ {name:"รามเกียรติ์",file:"01-ramakien.jpg",desc:"มหากาพย์การต่อสู้ระหว่างพระรามและทศกัณฐ์ เต็มไปด้วยวีรกรรม ความกล้าหาญ ความซื่อสัตย์ และตัวละครที่มีเอกลักษณ์"},
+ {name:"โสนน้อยเรือนงาม",file:"02-sonnoi.jpg",desc:"เรื่องราวของเจ้าหญิงผู้มีเรือนวิเศษ ต้องเผชิญชะตากรรมและอุปสรรค ก่อนใช้ความดี ความอดทน และความเมตตาฝ่าฟันไป"},
+ {name:"มัทนะพาธา",file:"03-mathanaphatha.jpg",desc:"บทละครคำฉันท์ที่เล่าถึงความรักและความเจ็บปวด ผ่านเรื่องราวของมัทนาและสุเทษณ์ พร้อมแนวคิดเกี่ยวกับธรรมชาติของความรัก"},
+ {name:"ไกรทอง",file:"04-kraithong.jpg",desc:"เรื่องของไกรทองผู้กล้าหาญที่ออกปราบชาละวัน พญาจระเข้แห่งเมืองพิจิตร"},
+ {name:"สังข์ทอง",file:"05-sangthong.jpg",desc:"เจ้าชายผู้ถือกำเนิดในหอยสังข์และต้องปลอมตัวเป็นเจ้าเงาะ ก่อนพิสูจน์คุณค่าที่แท้จริงของตน"},
+ {name:"อุทัยเทวี",file:"06-uthaithawi.jpg",desc:"นิทานพื้นบ้านไทยที่เล่าถึงอุทัยเทวี การพลัดพราก การผจญภัย และการฝ่าฟันอุปสรรค"},
+ {name:"แก้วหน้าม้า",file:"07-kaewnamma.jpg",desc:"เรื่องราวของหญิงผู้มีรูปลักษณ์แตกต่าง แต่มีความสามารถ ความกล้าหาญ และความรักที่มั่นคง"},
+ {name:"พระอภัยมณี",file:"08-phra-aphai-manee.jpg",desc:"วรรณคดีเอกของสุนทรภู่ ว่าด้วยการเดินทางผจญภัยของพระอภัยมณี ผู้มีปี่เป็นอาวุธสำคัญ"},
+ {name:"ขุนช้างขุนแผน",file:"09-khun-chang-khun-phaen.jpg",desc:"เสภาที่สะท้อนชีวิต ความรัก ความสัมพันธ์ และสังคมไทยในอดีต ผ่านตัวละครขุนแผน ขุนช้าง และวันทอง"},
+ {name:"อิเหนา",file:"10-ihena.jpg",desc:"บทละครรำที่เต็มไปด้วยความรัก การพลัดพราก การเมือง และการผจญภัยของอิเหนา"},
+ {name:"พระสุธน-มโนราห์",file:"11-phra-suthon-manora.jpg",desc:"ตำนานความรักระหว่างพระสุธนกับนางมโนราห์ ผู้ต้องพลัดพรากและเดินทางฝ่าอุปสรรคเพื่อกลับมาพบกัน"},
+ {name:"ลิลิตพระลอ",file:"12-lilit-phra-lo.jpg",desc:"วรรณคดีโศกนาฏกรรมความรักอันโดดเด่นด้านภาษาและการพรรณนา เล่าเรื่องพระลอกับพระเพื่อนพระแพง"},
+ {name:"ราชาธิราช",file:"13-rachathirat.jpg",desc:"วรรณคดีเชิงประวัติศาสตร์ที่กล่าวถึงพระราชประวัติและการศึกของพระเจ้าราชาธิราช"},
+ {name:"พระรถเมรี",file:"14-phra-rot-meree.jpg",desc:"เรื่องราวการผจญภัยและความรักอันซับซ้อนของพระรถเสนและนางเมรี"},
+ {name:"สามก๊ก",file:"15-sam-kok.jpg",desc:"วรรณกรรมจีนอิงประวัติศาสตร์ที่โดดเด่นด้วยกลยุทธ์ การเมือง มิตรภาพ และการชิงอำนาจในยุคสามก๊ก"},
+ {name:"ไตรภูมิพระร่วง",file:"16-traiphum-phra-ruang.jpg",desc:"วรรณคดีพุทธศาสนาที่อธิบายจักรวาลตามคติไตรภูมิ ทั้งโลกมนุษย์ สวรรค์ และนรก"}
+];
+let pool=[],roundNo=0,matchCount=0;
+function coverHTML(s,extra=""){
+ const src="images/"+s.file;
+ return `<div class="cover ${extra}"><img src="${src}" alt="ปกหนังสือ ${s.name}" onerror="this.style.display='none'"><div class="fallback"><strong>${s.name}</strong></div></div>`;
+}
+function restart(){
+ pool=[...stories].sort(()=>Math.random()-.5);roundNo=1;matchCount=0;
+ document.getElementById("game").style.display="block";document.getElementById("result").style.display="none";
+ showPair();
+}
+function showPair(){
+ if(pool.length===1){showWinner(pool[0]);return;}
+ const a=pool.shift(),b=pool.shift();
+ document.getElementById("round").textContent=`คู่ที่ ${matchCount+1} จาก 15 • เลือก 1 จาก 2 เรื่อง`;
+ document.getElementById("bar").style.width=(matchCount/15*100)+"%";
+ document.getElementById("choices").innerHTML=[a,b].map((s,i)=>`<button class="choice" type="button" onclick="choose(${i})">${coverHTML(s)}<div class="name">${s.name}</div><div class="hint">แตะเพื่อเลือกเรื่องนี้</div></button>`).join("");
+ window.currentPair=[a,b];
+}
+function choose(i){
+ const winner=window.currentPair[i];pool.push(winner);matchCount++;
+ if(pool.length===1){showWinner(pool[0]);return;}
+ showPair();
+}
+function showWinner(s){
+ document.getElementById("game").style.display="none";document.getElementById("result").style.display="block";
+ document.getElementById("winnerCover").innerHTML=coverHTML(s);
+ document.getElementById("winnerName").textContent=s.name;
+ document.getElementById("winnerDesc").textContent=s.desc;
+ document.getElementById("bar").style.width="100%";
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+restart();
+</script>
+</body>
+</html>
