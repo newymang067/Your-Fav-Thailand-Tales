@@ -14,23 +14,16 @@
 :root {
   --red:#651b25;
   --red-dark:#300d16;
-  --red-deep:#1d080e;
-  --red-light:#8e3038;
   --gold:#d9b76b;
   --gold-light:#f4dfaa;
   --cream:#fff8e9;
-  --paper:#f4e8d0;
   --ink:#38221e;
   --muted:#d7c4ad;
 }
 
-* {
-  box-sizing:border-box;
-}
+* { box-sizing:border-box; }
 
-html {
-  scroll-behavior:smooth;
-}
+html { scroll-behavior:smooth; }
 
 body {
   margin:0;
@@ -45,7 +38,6 @@ body {
   overflow-x:hidden;
 }
 
-/* ลายไทยบนพื้นหลัง */
 body::before {
   content:"";
   position:fixed;
@@ -54,13 +46,11 @@ body::before {
   z-index:0;
   opacity:.17;
   background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150' viewBox='0 0 150 150'%3E%3Cg fill='none' stroke='%23e2c47d' stroke-width='1.1'%3E%3Cpath d='M75 8 C90 27 108 28 110 45 C111 59 94 65 75 75 C56 65 39 59 40 45 C42 28 60 27 75 8Z'/%3E%3Cpath d='M75 20 C84 34 98 39 98 47 C98 56 85 63 75 68 C65 63 52 56 52 47 C52 39 66 34 75 20Z'/%3E%3Cpath d='M75 8 C68 32 68 48 75 75 C82 48 82 32 75 8Z'/%3E%3Cpath d='M8 75 C27 60 28 42 45 40 C59 39 65 56 75 75 C65 94 59 111 45 110 C28 108 27 90 8 75Z'/%3E%3Cpath d='M20 75 C34 66 39 52 47 52 C56 52 63 65 68 75 C63 85 56 98 47 98 C39 98 34 84 20 75Z'/%3E%3Cpath d='M75 75 C90 65 94 56 110 45 M75 75 C85 94 94 108 110 110'/%3E%3C/g%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150' viewBox='0 0 150 150'%3E%3Cg fill='none' stroke='%23e2c47d' stroke-width='1.1'%3E%3Cpath d='M75 8 C90 27 108 28 110 45 C111 59 94 65 75 75 C56 65 39 59 40 45 C42 28 60 27 75 8Z'/%3E%3Cpath d='M75 20 C84 34 98 39 98 47 C98 56 85 63 75 68 C65 63 52 56 52 47 C52 39 66 34 75 20Z'/%3E%3Cpath d='M75 8 C68 32 68 48 75 75 C82 48 82 32 75 8Z'/%3E%3C/g%3E%3C/svg%3E"),
     radial-gradient(circle,#e8c982 1px,transparent 1.5px);
   background-size:150px 150px,32px 32px;
-  background-position:center center,0 0;
 }
 
-/* กรอบรอบหน้าจอ */
 body::after {
   content:"";
   position:fixed;
@@ -118,15 +108,9 @@ main {
   padding:8px 17px;
   color:var(--cream);
   font-size:13px;
-  transition:.2s;
 }
 
-.home:hover {
-  background:#d9b76b20;
-  border-color:var(--gold-light);
-}
-
-/* ORNAMENT */
+.home:hover { background:#d9b76b20; }
 
 .ornament {
   text-align:center;
@@ -134,7 +118,6 @@ main {
   letter-spacing:9px;
   font-size:18px;
   margin:18px 0;
-  opacity:.95;
 }
 
 .heading {
@@ -200,8 +183,6 @@ main {
   transition:width .4s;
 }
 
-/* ROUND STEPS */
-
 .round-steps {
   display:flex;
   justify-content:center;
@@ -220,8 +201,6 @@ main {
   background:var(--gold);
   box-shadow:0 0 10px #e6c77a88;
 }
-
-/* VS */
 
 .vs {
   text-align:center;
@@ -250,10 +229,7 @@ main {
     radial-gradient(circle at 50% 0%,#d9b76b18,transparent 55%),
     linear-gradient(145deg,#fff9ed15,#1c070c88);
   border:1px solid #d9b76b99;
-  box-shadow:
-    0 15px 40px #16070a66,
-    inset 0 0 0 4px #d9b76b10,
-    inset 0 0 0 5px #d9b76b33;
+  box-shadow:0 15px 40px #16070a66;
   transition:.25s;
 }
 
@@ -262,10 +238,8 @@ main {
   content:"❧";
   position:absolute;
   color:var(--gold);
-  font-family:serif;
   font-size:26px;
   z-index:3;
-  opacity:.95;
   pointer-events:none;
 }
 
@@ -284,10 +258,6 @@ main {
 .choice-card:hover {
   transform:translateY(-5px);
   border-color:var(--gold-light);
-  box-shadow:
-    0 22px 50px #100308aa,
-    inset 0 0 0 4px #d9b76b20,
-    inset 0 0 0 5px #d9b76b66;
 }
 
 /* IMAGE FRAME */
@@ -295,12 +265,7 @@ main {
 .cover-frame {
   padding:7px;
   border:1px solid #d9b76bcc;
-  background:
-    linear-gradient(135deg,#d9b76b22,#fff8e908),
-    #3a111a;
-  box-shadow:
-    inset 0 0 0 2px #d9b76b22,
-    0 5px 15px #0004;
+  background:#3a111a;
   position:relative;
 }
 
@@ -374,6 +339,27 @@ main {
   border:1px solid #d9b76b99;
 }
 
+/* IMAGE CREDIT */
+
+.image-credit {
+  color:#b99d7e;
+  font-size:10px;
+  line-height:1.7;
+  text-align:center;
+  padding:7px 4px 2px;
+  overflow-wrap:anywhere;
+}
+
+.image-credit a {
+  color:#e5c77f;
+  text-decoration:underline;
+  text-underline-offset:2px;
+}
+
+.image-credit a:hover {
+  color:#fff0bd;
+}
+
 /* CARD CONTENT */
 
 .card-content {
@@ -443,9 +429,7 @@ main {
   border:1px solid #f2dba0;
 }
 
-.read-btn:hover {
-  background:#ffffff12;
-}
+.read-btn:hover { background:#ffffff12; }
 
 .choose-btn:hover {
   filter:brightness(1.1);
@@ -466,16 +450,13 @@ main {
   justify-content:center;
 }
 
-.modal.show {
-  display:flex;
-}
+.modal.show { display:flex; }
 
 .modal-box {
   width:min(650px,100%);
   max-height:90vh;
   overflow-y:auto;
-  background:
-    linear-gradient(145deg,#fff8e9,#ead8b8);
+  background:linear-gradient(145deg,#fff8e9,#ead8b8);
   color:var(--ink);
   padding:25px;
   border:5px double #ae853e;
@@ -483,26 +464,6 @@ main {
   outline-offset:-10px;
   box-shadow:0 25px 90px #0009;
   position:relative;
-}
-
-.modal-box::before,
-.modal-box::after {
-  content:"❧";
-  position:absolute;
-  color:#ae853e;
-  font-size:28px;
-  pointer-events:none;
-}
-
-.modal-box::before {
-  top:7px;
-  left:12px;
-}
-
-.modal-box::after {
-  bottom:7px;
-  right:12px;
-  transform:rotate(180deg);
 }
 
 .modal-top {
@@ -542,9 +503,7 @@ main {
   margin:15px auto;
 }
 
-.modal-image .cover {
-  max-height:250px;
-}
+.modal-image .cover { max-height:250px; }
 
 .modal-text {
   font-size:14px;
@@ -573,7 +532,6 @@ main {
   background:
     radial-gradient(circle at 50% 0%,#d9b76b20,transparent 60%),
     linear-gradient(145deg,#fff8e910,#1c070c77);
-  position:relative;
   box-shadow:inset 0 0 0 5px #d9b76b15;
 }
 
@@ -599,9 +557,7 @@ main {
   box-shadow:0 12px 35px #0006;
 }
 
-.winner-cover .cover {
-  max-height:340px;
-}
+.winner-cover .cover { max-height:340px; }
 
 #winnerName {
   font-family:'Noto Serif Thai',serif;
@@ -642,9 +598,7 @@ main {
   margin-top:25px;
 }
 
-.actions button {
-  padding:11px 22px;
-}
+.actions button { padding:11px 22px; }
 
 .primary {
   background:linear-gradient(120deg,#e8cb85,#bd914b);
@@ -674,51 +628,33 @@ main {
 /* MOBILE */
 
 @media(max-width:650px) {
-  body::after {
-    inset:5px;
-  }
+  body::after { inset:5px; }
 
-  main {
-    padding:18px 14px 45px;
-  }
+  main { padding:18px 14px 45px; }
 
-  .brand {
-    font-size:13px;
-  }
+  .brand { font-size:13px; }
 
   .home {
     padding:7px 10px;
     font-size:11px;
   }
 
-  .heading {
-    margin:15px 0;
-  }
+  .heading { margin:15px 0; }
 
-  .heading p {
-    font-size:12px;
-  }
+  .heading p { font-size:12px; }
 
-  .choices {
-    gap:12px;
-  }
+  .choices { gap:12px; }
 
-  .choice-card {
-    padding:9px;
-  }
+  .choice-card { padding:9px; }
 
-  .story-name {
-    font-size:16px;
-  }
+  .story-name { font-size:16px; }
 
   .story-short {
     font-size:11px;
     min-height:90px;
   }
 
-  .card-buttons {
-    grid-template-columns:1fr;
-  }
+  .card-buttons { grid-template-columns:1fr; }
 
   .read-btn,
   .choose-btn {
@@ -726,39 +662,23 @@ main {
     font-size:11px;
   }
 
-  .cover {
-    aspect-ratio:3/4;
-  }
+  .cover { aspect-ratio:3/4; }
 
-  .card-content {
-    padding:12px 3px 5px;
-  }
+  .card-content { padding:12px 3px 5px; }
 
-  .round {
-    font-size:14px;
-  }
+  .round { font-size:14px; }
 
-  .modal-box {
-    padding:20px 17px;
-  }
+  .modal-box { padding:20px 17px; }
 }
 
 @media(max-width:370px) {
-  .choices {
-    grid-template-columns:1fr;
-  }
+  .choices { grid-template-columns:1fr; }
 
-  .cover {
-    max-height:420px;
-  }
+  .cover { max-height:420px; }
 
-  .story-short {
-    min-height:0;
-  }
+  .story-short { min-height:0; }
 
-  .card-buttons {
-    grid-template-columns:1fr 1fr;
-  }
+  .card-buttons { grid-template-columns:1fr 1fr; }
 }
 
 @media(prefers-reduced-motion:reduce) {
@@ -813,8 +733,6 @@ main {
 
 </section>
 
-<!-- WINNER -->
-
 <section class="result" id="result">
   <div class="winner-kicker">YOUR FAVORITE THAI LITERATURE</div>
   <div class="ornament">❧ ✦ ❧</div>
@@ -844,8 +762,6 @@ main {
 
 </main>
 
-<!-- STORY MODAL -->
-
 <div class="modal" id="storyModal" onclick="outsideClose(event)">
   <div class="modal-box">
 
@@ -870,6 +786,12 @@ main {
 
 /* =================================
    ข้อมูลวรรณคดีทั้ง 16 เรื่อง
+
+   credit.creator = ชื่อผู้สร้างภาพ
+   credit.source  = ชื่อเว็บไซต์หรือแหล่งที่มา
+   credit.url     = URL ภาพต้นฉบับ
+
+   ใส่ข้อมูลตามแหล่งที่มาจริงเท่านั้น
 ================================= */
 
 const stories = [
@@ -877,6 +799,7 @@ const stories = [
 {
  name:"รามเกียรติ์",
  file:"01-ramakien.jpg",
+ credit:{creator:"คณะช่างเขียนหลวงและศิลปินชั้นครูหลายยุคสมัย",source:"วัดพระศรีรัตนศาสดาราม",url:""},
  short:"มหากาพย์การต่อสู้ของพระรามกับทศกัณฐ์ เต็มไปด้วยวีรกรรมและความจงรักภักดี",
  summary:"รามเกียรติ์เป็นวรรณคดีเรื่องสำคัญของไทย มีเค้าเรื่องจากรามายณะของอินเดีย เล่าถึงพระราม ผู้เป็นอวตารของพระนารายณ์ ซึ่งต้องออกเดินทางและต่อสู้กับทศกัณฐ์ เจ้าแห่งกรุงลงกา หลังจากนางสีดาถูกลักพาตัว",
  detail:"พระรามได้รับความช่วยเหลือจากพระลักษมณ์ หนุมาน สุครีพ และกองทัพวานร ในการเดินทางไปยังกรุงลงกา เกิดเป็นสงครามครั้งใหญ่ระหว่างฝ่ายพระรามและฝ่ายทศกัณฐ์ เรื่องราวเต็มไปด้วยการต่อสู้ กลศึก ความจงรักภักดี ความกล้าหาญ และการทำหน้าที่ตามหลักธรรม"
@@ -885,6 +808,7 @@ const stories = [
 {
  name:"โสนน้อยเรือนงาม",
  file:"02-sonnoi.jpg",
+ credit:{creator:"AI Generated",source:"Gemini",url:""},
  short:"นิทานพื้นบ้านเกี่ยวกับหญิงสาวผู้มีเรือนวิเศษ ต้องเผชิญชะตากรรมและการพลัดพราก",
  summary:"โสนน้อยเรือนงามเป็นนิทานพื้นบ้านไทย เล่าเรื่องหญิงสาวผู้มีความงดงามและเกี่ยวข้องกับเรือนวิเศษ ชีวิตของนางต้องพบกับการพลัดพราก ความอิจฉาริษยา และเหตุการณ์ที่ทำให้ต้องเผชิญความยากลำบาก",
  detail:"เรื่องราวกล่าวถึงการเปลี่ยนแปลงของชีวิตและชะตากรรมของตัวละคร นางเอกต้องใช้ความอดทนและความดีในการผ่านอุปสรรคต่าง ๆ เนื้อเรื่องสะท้อนแนวคิดเรื่องความกตัญญู ความเมตตา และการมองคุณค่าของคนจากการกระทำมากกว่ารูปลักษณ์ภายนอก"
@@ -893,6 +817,7 @@ const stories = [
 {
  name:"มัทนะพาธา",
  file:"03-mathanaphatha.jpg",
+ credit:{creator:"",source:"",url:""},
  short:"บทละครคำฉันท์ว่าด้วยความรักของมัทนาและสุเทษณ์ พร้อมแนวคิดเรื่องความรักและความเจ็บปวด",
  summary:"มัทนะพาธาเป็นบทละครพูดคำฉันท์พระราชนิพนธ์ในพระบาทสมเด็จพระมงกุฎเกล้าเจ้าอยู่หัว เรื่องราวเกี่ยวข้องกับเทพบุตรสุเทษณ์ผู้หลงรักมัทนา แต่นางไม่ได้มีใจตอบรัก",
  detail:"สุเทษณ์ไม่อาจสมหวังในความรัก จึงเกิดความขัดแย้งและคำสาปที่ทำให้มัทนาต้องลงมาเกิดเป็นมนุษย์ในโลกมนุษย์ เรื่องดำเนินไปท่ามกลางความรักที่ไม่สมหวัง ความปรารถนา และผลของการบังคับใจผู้อื่น โดยมีดอกกุหลาบเป็นสัญลักษณ์สำคัญของเรื่อง"
@@ -901,6 +826,7 @@ const stories = [
 {
  name:"ไกรทอง",
  file:"04-kraithong.jpg",
+ credit:{creator:"",source:"",url:""},
  short:"เรื่องของไกรทองผู้กล้าหาญที่ออกปราบชาละวัน พญาจระเข้แห่งเมืองพิจิตร",
  summary:"ไกรทองเป็นวรรณคดีและนิทานพื้นบ้านไทยที่มีชื่อเสียง เล่าเรื่องชาละวัน พญาจระเข้ผู้มีอิทธิฤทธิ์ ซึ่งอาศัยอยู่ในถ้ำใต้น้ำและสร้างความหวาดกลัวให้แก่ผู้คน",
  detail:"เมื่อชาละวันสร้างความเดือดร้อนให้ชาวเมือง ไกรทองผู้มีความสามารถด้านการปราบจระเข้จึงอาสาออกต่อสู้ เกิดเป็นการผจญภัยระหว่างมนุษย์กับพญาจระเข้ เรื่องราวมีทั้งความกล้าหาญ ไสยเวท การต่อสู้ และความเชื่อพื้นบ้าน"
@@ -909,6 +835,7 @@ const stories = [
 {
  name:"สังข์ทอง",
  file:"05-sangthong.jpg",
+ credit:{creator:"สุภาวดี โกมารทัต",source:"โรงพิมพ์คุรุสภาลาดพร้าว",url:""},
  short:"เจ้าชายผู้ถือกำเนิดในหอยสังข์ ต้องปลอมตัวเป็นเจ้าเงาะก่อนพิสูจน์คุณค่าที่แท้จริง",
  summary:"สังข์ทองเป็นวรรณคดีไทยที่เล่าถึงพระสังข์ ผู้ถือกำเนิดจากหอยสังข์และมีชาติกำเนิดพิเศษ แต่กลับถูกมองด้วยความรังเกียจและต้องเผชิญชะตากรรมตั้งแต่วัยเยาว์",
  detail:"พระสังข์เดินทางผ่านเหตุการณ์ต่าง ๆ และปลอมตัวเป็นเจ้าเงาะเพื่อปิดบังตัวตน ต่อมาได้พบกับนางรจนา ธิดาของท้าวสามนต์ ซึ่งเลือกเจ้าเงาะเป็นคู่ครอง แม้จะถูกดูหมิ่นจากผู้คน พระสังข์ได้พิสูจน์ความสามารถและตัวตนที่แท้จริง เรื่องสะท้อนคุณค่าภายใน ความอดทน และการไม่ตัดสินคนจากรูปลักษณ์"
@@ -917,6 +844,7 @@ const stories = [
 {
  name:"อุทัยเทวี",
  file:"06-uthaithawi.jpg",
+ credit:{creator:"AI Generated",source:"Chatgpt",url:""},
  short:"นิทานพื้นบ้านไทยเกี่ยวกับอุทัยเทวี การพลัดพราก และการฝ่าฟันอุปสรรค",
  summary:"อุทัยเทวีเป็นนิทานพื้นบ้านไทยที่เล่าเรื่องหญิงสาวผู้มีชาติกำเนิดและชะตาชีวิตเกี่ยวข้องกับโลกมนุษย์และโลกเหนือธรรมชาติ",
  detail:"เรื่องราวกล่าวถึงการกำเนิด การพลัดพราก และการเดินทางผ่านเหตุการณ์ต่าง ๆ ของตัวละคร อุทัยเทวีต้องเผชิญอุปสรรคและความเปลี่ยนแปลงของชีวิต เนื้อเรื่องสะท้อนความเชื่อพื้นบ้าน เรื่องบุญกรรม ความรัก และความอดทน ทั้งนี้รายละเอียดอาจแตกต่างกันในแต่ละสำนวน"
@@ -925,6 +853,7 @@ const stories = [
 {
  name:"แก้วหน้าม้า",
  file:"07-kaewnamma.jpg",
+ credit:{creator:"ลำจวน",source:"Goodreads",url:"https://www.goodreads.com/book/show/6918084?fbclid=PAT01DUAVlePVleHRuA2FlbQIxMABwZG9mAnNydGMGYXBwX2lkDzU2NzA2NzM0MzM1MjQyNwABp06pHpBr3SL9owN6FFOUmcjFjX9NVmMvrP3BtP_dk6AYbeAow90XBqcPpfdX_aem_pomQPU1XrZ7cm9Du4MM2qw"},
  short:"หญิงสาวผู้มีรูปลักษณ์แตกต่าง แต่มีความสามารถ ความกล้าหาญ และความรักที่มั่นคง",
  summary:"แก้วหน้าม้าเป็นนิทานพื้นบ้านไทยที่รู้จักกันแพร่หลาย เล่าเรื่องหญิงสาวผู้มีใบหน้าคล้ายม้า แต่มีความสามารถและความกล้าหาญเกินกว่าที่ผู้คนจะคาดคิด",
  detail:"นางแก้วมีความรักและความผูกพันกับพระปิ่นทอง แม้ต้องเผชิญการดูถูกและบททดสอบมากมาย นางใช้ความสามารถ ความฉลาด และความมุ่งมั่นในการพิสูจน์ตนเอง เรื่องราวสะท้อนการมองคุณค่าของคนจากจิตใจและการกระทำ ไม่ใช่เพียงรูปลักษณ์ภายนอก"
@@ -933,6 +862,7 @@ const stories = [
 {
  name:"พระอภัยมณี",
  file:"08-phra-aphai-manee.jpg",
+ credit:{creator:"แผนกช่างเขียนลายภาพไทย",source:"กรุงเทพวันอาทิตย์ กรุงเทพธุรกิจ",url:"https://www.facebook.com/photo.php?fbid=395930530473471&set=a.395929593806898&type=3&deeplink_ref_surface=instagram_direct&direct_share_include_copy=1&fb_entity_type=newsfeed&almsg=a2w&refsrc=deprecated&_rdr"},
  short:"วรรณคดีเอกของสุนทรภู่ ว่าด้วยการเดินทางผจญภัยของพระอภัยมณี ผู้มีปี่เป็นอาวุธสำคัญ",
  summary:"พระอภัยมณีเป็นวรรณคดีคำกลอนเรื่องยาวของสุนทรภู่ เล่าถึงพระอภัยมณีและศรีสุวรรณ สองพี่น้องที่ออกเดินทางจากเมืองหลังจากได้รับการศึกษาแตกต่างกัน พระอภัยมณีเชี่ยวชาญการเป่าปี่ ส่วนศรีสุวรรณเชี่ยวชาญวิชาการต่อสู้",
  detail:"พระอภัยมณีพบกับนางผีเสื้อสมุทรและมีโอรสชื่อสินสมุทร ก่อนจะหลบหนีออกจากถ้ำและพบกับนางเงือก จากนั้นเรื่องราวขยายไปสู่การผจญภัยในทะเล การพบผู้คนและเมืองต่าง ๆ ความรัก การศึก และการเดินทางที่เต็มไปด้วยเหตุการณ์เหนือจินตนาการ"
@@ -941,6 +871,7 @@ const stories = [
 {
  name:"ขุนช้างขุนแผน",
  file:"09-khun-chang-khun-phaen.jpg",
+ credit:{creator:"อาจารย์เมืองสิงห์ จันทร์ฉาย",source:"วัดป่าเลไลยก์วรวิหาร",url:"-"},
  short:"เสภาที่สะท้อนชีวิต ความรัก และสังคมไทยในอดีต ผ่านเรื่องราวของขุนช้าง ขุนแผน และวันทอง",
  summary:"ขุนช้างขุนแผนเป็นวรรณคดีเสภาเรื่องสำคัญของไทย มีฉากหลังในสังคมไทยสมัยอยุธยา เล่าเรื่องความสัมพันธ์ของตัวละครสามคน ได้แก่ ขุนแผน ขุนช้าง และนางวันทอง",
  detail:"เรื่องเริ่มจากความสัมพันธ์ในวัยเยาว์ของตัวละคร ก่อนพัฒนาเป็นความรัก ความขัดแย้ง การแย่งชิง และปัญหาครอบครัว ขุนแผนมีความสามารถด้านวิชาอาคมและการรบ ส่วนขุนช้างมีฐานะและทรัพย์สิน เรื่องสะท้อนชีวิตผู้คน ค่านิยม ความเชื่อ และระบบสังคมในอดีต"
@@ -949,6 +880,7 @@ const stories = [
 {
  name:"อิเหนา",
  file:"10-ihena.jpg",
+ credit:{creator:"อาจารย์จักรพันธุ์ โปรษยกฤต",source:"อิเหนาลาบุษบาถ้ำทอง",url:""},
  short:"บทละครรำที่เต็มไปด้วยความรัก การพลัดพราก การเมือง และการผจญภัยของอิเหนา",
  summary:"อิเหนาเป็นวรรณคดีที่มีต้นเค้ามาจากนิทานปันหยีของชวา เล่าเรื่องเจ้าชายอิเหนาแห่งเมืองกุเรปัน ผู้มีความรักและความสัมพันธ์กับบุษบา ธิดาเมืองดาหา",
  detail:"อิเหนาต้องเผชิญความขัดแย้งระหว่างความรัก ความปรารถนาส่วนตัว และหน้าที่ทางการเมือง เรื่องดำเนินผ่านการเดินทาง การปลอมตัว การทำสงคราม และการพลัดพราก ตัวละครมีความซับซ้อนและสะท้อนความสัมพันธ์ระหว่างบ้านเมืองกับความรัก"
@@ -957,14 +889,16 @@ const stories = [
 {
  name:"ปลาบู่ทอง",
  file:"11-plabuthong.jpg",
+ credit:{creator:"-",source:"วรรณคดีไทย",url:"https://arereeya.wordpress.com/2014/01/25/%E0%B8%9B%E0%B8%A5%E0%B8%B2%E0%B8%9A%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%AD%E0%B8%87/?fbclid=PAT01DUAVldCNleHRuA2FlbQIxMABwZG9mAnNydGMGYXBwX2lkDzU2NzA2NzM0MzM1MjQyNwABp5KTnSALLDrynIpFK2dxdVd1R7h0rliHo5pfkMew9AnmdUZyCmNyBsW4iRNq_aem_vidByTUf7-Q5n1eVagYArg"},
  short:"นิทานพื้นบ้านไทยว่าด้วยความรักและความผูกพันระหว่างแม่กับลูก ผ่านชะตากรรมของเด็กหญิงผู้ถูกกลั่นแกล้งโดยแม่เลี้ยงและพี่สาวต่างมารดา",
  summary:"ปลาบู่ทองเล่าเรื่องของเอื้อย เด็กหญิงผู้มีแม่ชื่อว่านางขนิษฐา แต่ถูกแม่เลี้ยงและลูกสาวทั้งสองกลั่นแกล้ง หลังจากแม่เสียชีวิตและกลับชาติมาเกิดเป็นปลาบู่ทอง เอื้อยจึงได้พบแม่อีกครั้งอย่างลับ ๆ ต่อมาเมื่อปลาบู่ทองถูกฆ่า เอื้อยยังคงได้รับความช่วยเหลือจากแม่ในรูปแบบต่าง ๆ จนกระทั่งได้พบกับความสุขในชีวิต",
- detail:"ปลาบู่ทองเป็นนิทานพื้นบ้านไทยที่เล่าเรื่องของเอื้อย ลูกสาวของเศรษฐีผู้มีจิตใจดีและนางขนิษฐา มารดาของเอื้อยเสียชีวิตจากการถูกกลั่นแกล้งของนางขนิษฐาเลี้ยง หรือแม่เลี้ยง ซึ่งเข้ามาอยู่ในครอบครัวพร้อมกับลูกสาวสองคน คือ อ้ายและอี่ หลังจากเสียชีวิต นางขนิษฐาได้กลับชาติมาเกิดเป็นปลาบู่ทองในสระน้ำ เอื้อยแอบไปพบและพูดคุยกับปลาบู่ทองอยู่เสมอ ทำให้ทั้งสองได้กลับมามีความผูกพันกันอีกครั้ง แต่เมื่อแม่เลี้ยงรู้ความจริง จึงวางแผนจับปลาบู่ทองมาฆ่า แม้ปลาบู่ทองจะจากไป แต่ความรักของแม่ยังคงอยู่ โดยวิญญาณของนางขนิษฐาได้ปรากฏในรูปแบบต่าง ๆ เพื่อช่วยเหลือและปกป้องเอื้อยจากการถูกกลั่นแกล้ง ในที่สุดเอื้อยได้พบกับความสุขและชีวิตที่ดีขึ้น เรื่องนี้สะท้อนถึงความรักของแม่ ความกตัญญู ความอดทน และการทำความดี"
+ detail:"ปลาบู่ทองเป็นนิทานพื้นบ้านไทยที่เล่าเรื่องของเอื้อย ลูกสาวของเศรษฐีผู้มีจิตใจดีและนางขนิษฐา มารดาของเอื้อยเสียชีวิตจากการถูกกลั่นแกล้งของแม่เลี้ยง ซึ่งเข้ามาอยู่ในครอบครัวพร้อมกับลูกสาวสองคน คือ อ้ายและอี่ หลังจากเสียชีวิต นางขนิษฐาได้กลับชาติมาเกิดเป็นปลาบู่ทองในสระน้ำ เอื้อยแอบไปพบและพูดคุยกับปลาบู่ทองอยู่เสมอ ทำให้ทั้งสองได้กลับมามีความผูกพันกันอีกครั้ง แต่เมื่อแม่เลี้ยงรู้ความจริง จึงวางแผนจับปลาบู่ทองมาฆ่า แม้ปลาบู่ทองจะจากไป แต่ความรักของแม่ยังคงอยู่ โดยวิญญาณของนางขนิษฐาได้ปรากฏในรูปแบบต่าง ๆ เพื่อช่วยเหลือและปกป้องเอื้อยจากการถูกกลั่นแกล้ง ในที่สุดเอื้อยได้พบกับความสุขและชีวิตที่ดีขึ้น เรื่องนี้สะท้อนถึงความรักของแม่ ความกตัญญู ความอดทน และการทำความดี"
 },
 
 {
  name:"ลิลิตพระลอ",
  file:"12-lilit-phra-lo.jpg",
+ credit:{creator:"ป.จิตรกร",source:"-",url:"-"},
  short:"โศกนาฏกรรมความรักของพระลอ พระเพื่อน และพระแพง โดดเด่นด้วยภาษาและการพรรณนา",
  summary:"ลิลิตพระลอเป็นวรรณคดีประเภทลิลิตที่มีชื่อเสียง เล่าเรื่องพระลอ กษัตริย์หนุ่มผู้มีรูปโฉมงดงาม ซึ่งได้ยินกิตติศัพท์ความงามของพระเพื่อนและพระแพง ธิดาของเมืองสรอง",
  detail:"ด้วยแรงปรารถนาและมนตร์เสน่ห์ พระลอเดินทางไปยังเมืองสรองและได้พบกับพระเพื่อนพระแพง ทั้งสามมีความรักต่อกัน แต่ความขัดแย้งระหว่างสองเมืองกลับนำไปสู่โศกนาฏกรรม เรื่องโดดเด่นด้านการใช้ภาษา การพรรณนาความรัก และการสะท้อนความขัดแย้งของมนุษย์"
@@ -973,22 +907,25 @@ const stories = [
 {
  name:"ราชาธิราช",
  file:"13-rachathirat.jpg",
+ credit:{creator:"สำนักพิมพ์เสริมวิทย์",source:"",url:""},
  short:"วรรณคดีเชิงประวัติศาสตร์ที่กล่าวถึงพระราชประวัติ การเมือง และการศึกของพระเจ้าราชาธิราช",
  summary:"ราชาธิราชเป็นวรรณคดีที่มีเค้าเรื่องจากพงศาวดารมอญ กล่าวถึงพระเจ้าราชาธิราช กษัตริย์ผู้มีบทบาทสำคัญในการสร้างความเข้มแข็งให้แก่บ้านเมือง",
  detail:"เนื้อเรื่องเต็มไปด้วยเหตุการณ์ทางการเมือง การปกครอง การทำสงคราม และการวางกลยุทธ์ ตัวละครต้องใช้ทั้งสติปัญญา ความกล้าหาญ และความสามารถในการตัดสินใจ เรื่องนี้จึงเป็นตัวอย่างของวรรณคดีที่ให้แง่คิดเกี่ยวกับการเป็นผู้นำและการบริหารบ้านเมือง"
 },
 
 {
- name:"นาง12",
+ name:"นางสิบสอง",
  file:"14-nang-sib-song.jpg",
- short:"เรื่องราวของสิบสองสาวพี่น้อง ผู้ต้องเผชิญชะตากรรมอันโหดร้ายจากนางยักษ์ และการต่อสู้เพื่อครอบครัวเพื่อลูกหลาน",
- summary:"นางสิบสองเป็นนิทานพื้นบ้านไทยที่เล่าถึงหญิงสาวสิบสองพี่น้องซึ่งถูกมารดาทอดทิ้ง ก่อนจะถูกยักษ์ เมื่อเติบโตขึ้น พวกนางต้องเผชิญกับความทุกข์ทรมานจากความโหดร้ายของนางยักษ์ ต่อมาพระรถเสน บุตรของนางเภา ได้ออกเดินทางเพื่อช่วยเหลือมารดาและนไปสู่เหตุการณ์ผจญภัยมากมาย",
+ credit:{creator:"ลุงทอง",source:"สำนักพิมพ์เสริมวิทย์",url:"http://sermvit.lnwshop.com/product/705/%E0%B8%99%E0%B8%B2%E0%B8%87%E0%B8%AA%E0%B8%B4%E0%B8%9A%E0%B8%AA%E0%B8%AD%E0%B8%87-%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%A3%E0%B8%96-%E0%B9%80%E0%B8%A1%E0%B8%A3%E0%B8%B5?fbclid=PAT01DUAVldN9leHRuA2FlbQIxMABwZG9mAnNydGMGYXBwX2lkDzU2NzA2NzM0MzM1MjQyNwABp0-vnYWJV90tzTQTlO7cWeep7MFYrcXOgjAGCYwbQyK4_OcWvYdqr9DNw-qt_aem_gGOJIX94MQPgOe0N-uVe3Q"},
+ short:"เรื่องราวของหญิงสาวสิบสองพี่น้อง ผู้ต้องเผชิญชะตากรรมอันโหดร้ายจากนางยักษ์ และการต่อสู้เพื่อครอบครัว",
+ summary:"นางสิบสองเป็นนิทานพื้นบ้านไทยที่เล่าถึงหญิงสาวสิบสองพี่น้องซึ่งถูกมารดาทอดทิ้ง ก่อนจะถูกนางยักษ์จับไปเลี้ยงดู เมื่อเติบโตขึ้น พวกนางต้องเผชิญกับความทุกข์ยาก ต่อมาพระรถเสน บุตรของหนึ่งในพี่น้อง ได้ออกเดินทางเพื่อช่วยเหลือมารดาและครอบครัว",
  detail:"นางสิบสองเป็นนิทานพื้นบ้านไทยที่กล่าวถึงหญิงสาวสิบสองพี่น้องซึ่งเกิดในครอบครัวยากจน เมื่อครอบครัวไม่สามารถเลี้ยงดูพวกนางได้ จึงนำไปทิ้งไว้ในป่า ต่อมาพวกนางถูกนางยักษ์จับไปเลี้ยงดูในเมืองยักษ์ โดยนางยักษ์มีความประสงค์ร้ายและสร้างความทุกข์ทรมานให้แก่พวกนาง ภายหลังหญิงสาวทั้งสิบสองได้มีครอบครัวและให้กำเนิดบุตร โดยหนึ่งในนั้นคือพระรถเสน ผู้มีบทบาทสำคัญในการดำเนินเรื่อง พระรถเสนต้องออกเดินทางผ่านอุปสรรคและภารกิจต่าง ๆ เพื่อช่วยเหลือมารดาและครอบครัว เรื่องราวสะท้อนถึงความรักของแม่ ความกตัญญู ความเสียสละ และผลของความโลภกับความโหดร้าย"
 },
 
 {
  name:"สามก๊ก",
  file:"15-sam-kok.jpg",
+ credit:{creator:"Tsuyoshi Nagano",source:"Romance of the Three Kingsdom",url:""},
  short:"วรรณกรรมจีนอิงประวัติศาสตร์ โดดเด่นด้วยกลยุทธ์ การเมือง มิตรภาพ และการชิงอำนาจ",
  summary:"สามก๊กเป็นวรรณกรรมจีนอิงประวัติศาสตร์ เล่าเหตุการณ์ในช่วงปลายราชวงศ์ฮั่น เมื่ออำนาจส่วนกลางอ่อนแอลงและเกิดความขัดแย้งระหว่างขุนศึกหลายฝ่าย",
  detail:"เรื่องราวกล่าวถึงบุคคลสำคัญ เช่น เล่าปี่ โจโฉ และซุนกวน ซึ่งต่างมีเป้าหมายในการรวบรวมแผ่นดิน นอกจากนี้ยังมีตัวละครอย่างกวนอู เตียวหุย และขงเบ้ง ที่แสดงให้เห็นถึงความจงรักภักดี ความสามารถทางการทหาร และกลยุทธ์ทางการเมือง"
@@ -997,6 +934,7 @@ const stories = [
 {
  name:"ไตรภูมิพระร่วง",
  file:"16-traiphum-phra-ruang.jpg",
+ credit:{creator:"พระเทวาภินิมมิต(ฉาย เทียมศิลปชัย)",source:"พระมาลัยท่องนรก สวรรค์",url:""},
  short:"วรรณคดีพุทธศาสนาที่อธิบายจักรวาลตามคติไตรภูมิ ทั้งโลกมนุษย์ สวรรค์ และนรก",
  summary:"ไตรภูมิพระร่วง หรือเตภูมิกถา เป็นวรรณคดีพุทธศาสนาที่เชื่อว่าเรียบเรียงขึ้นในสมัยสุโขทัย โดยพระมหาธรรมราชาที่ 1 หรือพญาลิไทย",
  detail:"เนื้อหาอธิบายจักรวาลตามคติพุทธศาสนา แบ่งออกเป็นกามภูมิ รูปภูมิ และอรูปภูมิ กล่าวถึงโลกมนุษย์ สวรรค์ และนรก รวมทั้งการเวียนว่ายตายเกิดตามผลของกรรม จุดมุ่งหมายสำคัญคือการอธิบายหลักธรรมและชี้ให้เห็นถึงผลของการกระทำ"
@@ -1026,23 +964,74 @@ const roundNames = [
 const roundMatches = [8,4,2,1];
 
 
+/* ป้องกันอักขระพิเศษในข้อมูลเครดิต */
+
+function escapeHTML(value) {
+  return String(value || "").replace(/[&<>"']/g, char => ({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#39;"
+  })[char]);
+}
+
+
+/* สร้างเครดิตภาพ */
+
+function creditHTML(story) {
+
+  const credit = story.credit;
+
+  if (!credit) return "";
+
+  const creator = escapeHTML(credit.creator);
+  const source = escapeHTML(credit.source);
+  const url = String(credit.url || "").trim();
+
+  let sourceHTML = source;
+
+  if (/^https?:\/\//i.test(url)) {
+    sourceHTML = `
+      <a href="${escapeHTML(url)}"
+         target="_blank"
+         rel="noopener noreferrer">
+        ${source || "ดูแหล่งที่มา"}
+      </a>
+    `;
+  }
+
+  if (!creator && !source && !url) return "";
+
+  return `
+    <div class="image-credit">
+      ${creator ? `ภาพโดย: ${creator}` : ""}
+      ${creator && (source || url) ? " · " : ""}
+      ${sourceHTML}
+    </div>
+  `;
+}
+
+
 /* สร้างการ์ดภาพปก */
 
 function coverHTML(story) {
+
   const src = "images/" + story.file;
 
   return `
     <div class="cover">
       <img
-        src="${src}"
-        alt="ภาพปก ${story.name}"
+        src="${escapeHTML(src)}"
+        alt="ภาพปก ${escapeHTML(story.name)}"
         onerror="this.style.display='none'"
       >
       <div class="fallback">
-        <strong>${story.name}</strong>
+        <strong>${escapeHTML(story.name)}</strong>
       </div>
-      <div class="cover-label">วรรณคดีไทย</div>
     </div>
+
+    ${creditHTML(story)}
   `;
 }
 
@@ -1050,6 +1039,7 @@ function coverHTML(story) {
 /* เริ่มการแข่งขันใหม่ */
 
 function restart() {
+
   pool = [...stories].sort(() => Math.random() - 0.5);
 
   winners = [];
@@ -1126,11 +1116,11 @@ function showPair() {
           </div>
 
           <div class="story-name">
-            ${story.name}
+            ${escapeHTML(story.name)}
           </div>
 
           <div class="story-short">
-            ${story.short}
+            ${escapeHTML(story.short)}
           </div>
 
           <div class="card-buttons">
